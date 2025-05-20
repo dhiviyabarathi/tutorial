@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f0f0f0;
+      margin: 0;
+    }
+    .calculator {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    #display {
+      width: 100%;
+      height: 40px;
+      text-align: right;
+      margin-bottom: 10px;
+      font-size: 18px;
+      padding: 5px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .buttons button {
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #007bff;
+      color: white;
+      transition: background 0.3s ease;
+    }
+    .buttons button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator">
+  <input type="text" id="display" readonly>
+  <div class="buttons">
+    <button>7</button>
+    <button>8</button>
+    <button>9</button>
+    <button>/</button>
+    <button>4</button>
+    <button>5</button>
+    <button>6</button>
+    <button>*</button>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>-</button>
+    <button>0</button>
+    <button>C</button>
+    <button>=</button>
+    <button>+</button>
+  </div>
+</div>
+
+<script>
+  const display = document.getElementById('display');
+  const buttons = document.querySelectorAll('.buttons button');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      if (button.textContent === 'C') {
+        display.value = '';
+      } else if (button.textContent === '=') {
+        try {
+          display.value = eval(display.value);
+        } catch {
+          display.value = 'Error';
+        }
+      } else {
+        display.value += button.textContent;
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
